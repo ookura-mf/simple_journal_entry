@@ -37,4 +37,4 @@ out/
 .vscode/
 
 ### mysql of docker ###
-/docker/mysql/*
+docker/mysql/store/
