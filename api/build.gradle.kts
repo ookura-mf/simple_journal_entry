@@ -26,6 +26,7 @@ val graphqlKotlinVersion = "5.1.0"
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-jooq:2.5.6")
+    implementation("org.jooq:jooq-codegen:3.15.5")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("com.expediagroup", "graphql-kotlin-spring-server", graphqlKotlinVersion)
@@ -50,7 +51,7 @@ jooq {
                     url = System.getenv("MYSQL_URL")
                 }
                 generator.apply {
-                    name = "org.jooq.codegen.DefaultGenerator"
+                    name = "org.jooq.codegen.JavaGenerator"
                     database.apply {
                         name = "org.jooq.meta.mysql.MySQLDatabase"
                         inputSchema = "simple_journal_entry_db"
@@ -59,6 +60,11 @@ jooq {
                     generate.apply {
                         isDeprecated = false
                         isImmutablePojos = true
+                        isRecords = true
+                        isDaos = true
+                        isSpringAnnotations = true
+                        isJavaTimeTypes = true
+                        isFluentSetters = true
                     }
                     target.apply {
                         packageName = "com.okeicalm.simpleJournalEntry"
