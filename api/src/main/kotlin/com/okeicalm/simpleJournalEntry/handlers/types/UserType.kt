@@ -1,10 +1,8 @@
 package com.okeicalm.simpleJournalEntry.handlers.types
 
-import com.apollographql.federation.graphqljava._FieldSet.type
 import com.expediagroup.graphql.generator.annotations.GraphQLName
 import com.expediagroup.graphql.generator.scalars.ID
 import com.okeicalm.simpleJournalEntry.entities.User
-import graphql.relay.Relay
 
 const val userTypeGraphQLName = "User"
 

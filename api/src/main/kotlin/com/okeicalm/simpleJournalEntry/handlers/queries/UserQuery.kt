@@ -5,7 +5,7 @@ import com.okeicalm.simpleJournalEntry.handlers.types.UserType
 import org.springframework.stereotype.Component
 
 @Component
-class UserQuery(): Query {
+class UserQuery() : Query {
     @Suppress("unused")
     fun newUsers(): List<UserType> {
         return listOf()
