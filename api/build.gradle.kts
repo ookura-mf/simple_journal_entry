@@ -10,7 +10,7 @@ plugins {
 
 group = "com.okeicalm"
 version = "0.0.1-SNAPSHOT"
-java.sourceCompatibility = JavaVersion.VERSION_17
+java.sourceCompatibility = JavaVersion.VERSION_11
 
 repositories {
 	mavenCentral()
@@ -31,10 +31,16 @@ dependencies {
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
+graphql {
+	schema {
+		packages = listOf("com.okeicalm.simpleJournalEntry")
+	}
+}
+
 tasks.withType<KotlinCompile> {
 	kotlinOptions {
 		freeCompilerArgs = listOf("-Xjsr305=strict")
-		jvmTarget = "17"
+		jvmTarget = "11"
 	}
 }
 
@@ -43,6 +49,6 @@ tasks.withType<Test> {
 }
 
 val graphqlGenerateSDL by tasks.getting(com.expediagroup.graphql.plugin.gradle.tasks.GraphQLGenerateSDLTask::class) {
-	packages.set(listOf("com.okeicalm.simple-journal-entry"))
+	packages.set(listOf("com.okeicalm.simpleJournalEntry"))
 	schemaFile.set(file("${project.projectDir}/schema.graphql"))
 }

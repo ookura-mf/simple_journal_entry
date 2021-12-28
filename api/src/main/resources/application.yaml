@@ -1,0 +1,8 @@
+graphql:
+  packages:
+    - "com.okeicalm.simpleJournalEntry"
+spring:
+  datasource:
+    url: ${MYSQL_URL}
+    username: ${MYSQL_USER}
+    password: ${MYSQL_PASSWORD}
