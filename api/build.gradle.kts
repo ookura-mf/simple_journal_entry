@@ -31,6 +31,12 @@ dependencies {
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
+graphql {
+	schema {
+		packages = listOf("com.okeicalm.simpleJournalEntry")
+	}
+}
+
 tasks.withType<KotlinCompile> {
 	kotlinOptions {
 		freeCompilerArgs = listOf("-Xjsr305=strict")
