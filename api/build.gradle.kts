@@ -43,6 +43,6 @@ tasks.withType<Test> {
 }
 
 val graphqlGenerateSDL by tasks.getting(com.expediagroup.graphql.plugin.gradle.tasks.GraphQLGenerateSDLTask::class) {
-	packages.set(listOf("com.okeicalm.simple-journal-entry"))
+	packages.set(listOf("com.okeicalm.simpleJournalEntry"))
 	schemaFile.set(file("${project.projectDir}/schema.graphql"))
 }

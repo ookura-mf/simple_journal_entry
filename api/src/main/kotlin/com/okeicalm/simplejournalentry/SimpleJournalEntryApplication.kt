@@ -1,4 +1,4 @@
-package com.okeicalm.simplejournalentry
+package com.okeicalm.simpleJournalEntry
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
