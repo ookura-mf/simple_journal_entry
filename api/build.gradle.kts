@@ -64,6 +64,8 @@ jooq {
                         packageName = "com.okeicalm.simpleJournalEntry"
                         directory = "${project.rootDir}/src/main/java"
                     }
+                    // TODO: これを指定するとClassNotFoundErrorになるので諦めた
+                    // strategy.name = "com.okeicalm.simpleJournalEntry.CustomGeneratorStrategy"
                 }
             }
         }
