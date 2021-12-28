@@ -1,9 +1,11 @@
+import org.gradle.kotlin.dsl.flyway
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
 	id("org.springframework.boot") version "2.7.0-SNAPSHOT"
 	id("io.spring.dependency-management") version "1.0.11.RELEASE"
 	id("com.expediagroup.graphql") version "5.1.0"
+	id("org.flywaydb.flyway") version "8.0.1"
 	kotlin("jvm") version "1.6.0"
 	kotlin("plugin.spring") version "1.6.0"
 }
@@ -26,9 +28,16 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	implementation("com.expediagroup", "graphql-kotlin-spring-server", graphqlKotlinVersion)
 	implementation("com.expediagroup", "graphql-kotlin-schema-generator", graphqlKotlinVersion)
+	implementation("org.flywaydb:flyway-core")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	runtimeOnly("mysql:mysql-connector-java")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+}
+
+flyway {
+	url = System.getenv("MYSQL_URL")
+	user = System.getenv("MYSQL_USER")
+	password = System.getenv("MYSQL_PASSWORD")
 }
 
 graphql {
