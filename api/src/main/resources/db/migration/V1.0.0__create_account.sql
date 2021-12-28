@@ -1,6 +1,8 @@
 use simple_journal_entry_db;
 
-create table users (
+create table accounts (
                        id int not null primary key auto_increment,
-                       name varchar(50) not null
+                       code varchar(50) not null unique,
+                       name varchar(50),
+                       element_type int not null
 );
