@@ -8,6 +8,7 @@ plugins {
 	id("org.flywaydb.flyway") version "8.0.1"
 	kotlin("jvm") version "1.6.0"
 	kotlin("plugin.spring") version "1.6.0"
+    id("org.jlleitschuh.gradle.ktlint") version "10.2.1"
 }
 
 group = "com.okeicalm"
