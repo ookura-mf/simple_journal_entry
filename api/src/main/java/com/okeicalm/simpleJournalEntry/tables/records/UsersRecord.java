@@ -24,8 +24,9 @@ public class UsersRecord extends UpdatableRecordImpl<UsersRecord> implements Rec
     /**
      * Setter for <code>simple_journal_entry_db.users.id</code>.
      */
-    public void setId(Integer value) {
+    public UsersRecord setId(Integer value) {
         set(0, value);
+        return this;
     }
 
     /**
@@ -38,8 +39,9 @@ public class UsersRecord extends UpdatableRecordImpl<UsersRecord> implements Rec
     /**
      * Setter for <code>simple_journal_entry_db.users.name</code>.
      */
-    public void setName(String value) {
+    public UsersRecord setName(String value) {
         set(1, value);
+        return this;
     }
 
     /**
