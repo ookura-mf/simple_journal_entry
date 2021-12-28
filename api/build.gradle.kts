@@ -5,6 +5,7 @@ plugins {
     id("org.springframework.boot") version "2.7.0-SNAPSHOT"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
     id("com.expediagroup.graphql") version "5.1.0"
+    id("nu.studer.jooq") version "6.0.1"
     id("org.flywaydb.flyway") version "8.0.1"
     id("org.jlleitschuh.gradle.ktlint") version "10.2.1"
     kotlin("jvm") version "1.6.0"
@@ -24,15 +25,57 @@ repositories {
 val graphqlKotlinVersion = "5.1.0"
 
 dependencies {
-    implementation("org.springframework.boot:spring-boot-starter-jooq")
+    implementation("org.springframework.boot:spring-boot-starter-jooq:2.5.6")
+    implementation("org.jooq:jooq-codegen:3.15.5")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("com.expediagroup", "graphql-kotlin-spring-server", graphqlKotlinVersion)
     implementation("com.expediagroup", "graphql-kotlin-schema-generator", graphqlKotlinVersion)
-    implementation("org.flywaydb:flyway-core")
-    developmentOnly("org.springframework.boot:spring-boot-devtools")
-    runtimeOnly("mysql:mysql-connector-java")
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    implementation("org.flywaydb:flyway-core:8.2.3")
+    implementation("org.flywaydb:flyway-mysql:8.2.3")
+    jooqGenerator("mysql:mysql-connector-java:8.0.25")
+    developmentOnly("org.springframework.boot:spring-boot-devtools:2.6.1")
+    runtimeOnly("mysql:mysql-connector-java:8.0.25")
+    testImplementation("org.springframework.boot:spring-boot-starter-test:2.6.1")
+}
+
+jooq {
+    configurations {
+        create("main") {
+            jooqConfiguration.apply {
+                logging = org.jooq.meta.jaxb.Logging.WARN
+                jdbc.apply {
+                    username = System.getenv("MYSQL_USER")
+                    password = System.getenv("MYSQL_PASSWORD")
+                    driver = "com.mysql.cj.jdbc.Driver"
+                    url = System.getenv("MYSQL_URL")
+                }
+                generator.apply {
+                    name = "org.jooq.codegen.JavaGenerator"
+                    database.apply {
+                        name = "org.jooq.meta.mysql.MySQLDatabase"
+                        inputSchema = "simple_journal_entry_db"
+                        excludes = "flyway_schema_history"
+                    }
+                    generate.apply {
+                        isDeprecated = false
+                        isImmutablePojos = true
+                        isRecords = true
+                        isDaos = true
+                        isSpringAnnotations = true
+                        isJavaTimeTypes = true
+                        isFluentSetters = true
+                    }
+                    target.apply {
+                        packageName = "com.okeicalm.simpleJournalEntry"
+                        directory = "${project.rootDir}/src/main/java"
+                    }
+                    // TODO: これを指定するとClassNotFoundErrorになるので諦めた
+                    // strategy.name = "com.okeicalm.simpleJournalEntry.CustomGeneratorStrategy"
+                }
+            }
+        }
+    }
 }
 
 flyway {
