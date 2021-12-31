@@ -1,10 +1,10 @@
-package com.okeicalm.simpleJournalEntry.configs
+package com.okeicalm.simpleJournalEntry.config
 
 import org.jooq.codegen.DefaultGeneratorStrategy
 import org.jooq.codegen.GeneratorStrategy
 import org.jooq.meta.Definition
 
-open class CustomGeneratorStrategy: DefaultGeneratorStrategy() {
+open class CustomGeneratorStrategy : DefaultGeneratorStrategy() {
     override fun getJavaClassName(definition: Definition?, mode: GeneratorStrategy.Mode?): String {
         val name = super.getJavaClassName(definition, mode)
 
