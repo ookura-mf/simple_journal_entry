@@ -61,7 +61,7 @@ public class Accounts extends TableImpl<AccountsRecord> {
     /**
      * The column <code>simple_journal_entry_db.accounts.name</code>.
      */
-    public final TableField<AccountsRecord, String> NAME = createField(DSL.name("name"), SQLDataType.VARCHAR(50), this, "");
+    public final TableField<AccountsRecord, String> NAME = createField(DSL.name("name"), SQLDataType.VARCHAR(50).nullable(false), this, "");
 
     /**
      * The column <code>simple_journal_entry_db.accounts.element_type</code>.
