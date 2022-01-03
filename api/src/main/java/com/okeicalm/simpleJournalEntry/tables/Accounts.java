@@ -51,7 +51,7 @@ public class Accounts extends TableImpl<AccountsRecord> {
     /**
      * The column <code>simple_journal_entry_db.accounts.id</code>.
      */
-    public final TableField<AccountsRecord, Integer> ID = createField(DSL.name("id"), SQLDataType.INTEGER.nullable(false).identity(true), this, "");
+    public final TableField<AccountsRecord, Long> ID = createField(DSL.name("id"), SQLDataType.BIGINT.nullable(false).identity(true), this, "");
 
     /**
      * The column <code>simple_journal_entry_db.accounts.code</code>.
@@ -109,8 +109,8 @@ public class Accounts extends TableImpl<AccountsRecord> {
     }
 
     @Override
-    public Identity<AccountsRecord, Integer> getIdentity() {
-        return (Identity<AccountsRecord, Integer>) super.getIdentity();
+    public Identity<AccountsRecord, Long> getIdentity() {
+        return (Identity<AccountsRecord, Long>) super.getIdentity();
     }
 
     @Override
@@ -154,7 +154,7 @@ public class Accounts extends TableImpl<AccountsRecord> {
     // -------------------------------------------------------------------------
 
     @Override
-    public Row4<Integer, String, String, Integer> fieldsRow() {
+    public Row4<Long, String, String, Integer> fieldsRow() {
         return (Row4) super.fieldsRow();
     }
 }

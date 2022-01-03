@@ -20,7 +20,7 @@ import org.springframework.stereotype.Repository;
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 @Repository
-public class AccountsDao extends DAOImpl<AccountsRecord, com.okeicalm.simpleJournalEntry.tables.pojos.Accounts, Integer> {
+public class AccountsDao extends DAOImpl<AccountsRecord, com.okeicalm.simpleJournalEntry.tables.pojos.Accounts, Long> {
 
     /**
      * Create a new AccountsDao without any configuration
@@ -38,7 +38,7 @@ public class AccountsDao extends DAOImpl<AccountsRecord, com.okeicalm.simpleJour
     }
 
     @Override
-    public Integer getId(com.okeicalm.simpleJournalEntry.tables.pojos.Accounts object) {
+    public Long getId(com.okeicalm.simpleJournalEntry.tables.pojos.Accounts object) {
         return object.getId();
     }
 
@@ -46,21 +46,21 @@ public class AccountsDao extends DAOImpl<AccountsRecord, com.okeicalm.simpleJour
      * Fetch records that have <code>id BETWEEN lowerInclusive AND
      * upperInclusive</code>
      */
-    public List<com.okeicalm.simpleJournalEntry.tables.pojos.Accounts> fetchRangeOfId(Integer lowerInclusive, Integer upperInclusive) {
+    public List<com.okeicalm.simpleJournalEntry.tables.pojos.Accounts> fetchRangeOfId(Long lowerInclusive, Long upperInclusive) {
         return fetchRange(Accounts.ACCOUNTS.ID, lowerInclusive, upperInclusive);
     }
 
     /**
      * Fetch records that have <code>id IN (values)</code>
      */
-    public List<com.okeicalm.simpleJournalEntry.tables.pojos.Accounts> fetchById(Integer... values) {
+    public List<com.okeicalm.simpleJournalEntry.tables.pojos.Accounts> fetchById(Long... values) {
         return fetch(Accounts.ACCOUNTS.ID, values);
     }
 
     /**
      * Fetch a unique record that has <code>id = value</code>
      */
-    public com.okeicalm.simpleJournalEntry.tables.pojos.Accounts fetchOneById(Integer value) {
+    public com.okeicalm.simpleJournalEntry.tables.pojos.Accounts fetchOneById(Long value) {
         return fetchOne(Accounts.ACCOUNTS.ID, value);
     }
 

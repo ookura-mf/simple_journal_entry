@@ -15,7 +15,7 @@ public class Accounts implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private final Integer id;
+    private final Long    id;
     private final String  code;
     private final String  name;
     private final Integer elementType;
@@ -28,7 +28,7 @@ public class Accounts implements Serializable {
     }
 
     public Accounts(
-        Integer id,
+        Long    id,
         String  code,
         String  name,
         Integer elementType
@@ -42,7 +42,7 @@ public class Accounts implements Serializable {
     /**
      * Getter for <code>simple_journal_entry_db.accounts.id</code>.
      */
-    public Integer getId() {
+    public Long getId() {
         return this.id;
     }
 
