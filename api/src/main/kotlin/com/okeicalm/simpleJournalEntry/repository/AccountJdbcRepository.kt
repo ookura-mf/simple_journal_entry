@@ -25,4 +25,13 @@ class AccountJdbcRepository @Autowired constructor(private val dslContext: DSLCo
         return accountPOJO?.let { Account(it) }
     }
 
+    override fun create(account: Account): Long {
+        dslContext
+            .newRecord(Accounts.ACCOUNTS)
+            .setName(account.name)
+            .setCode(account.code)
+            .setElementType(account.elementType)
+            .store()
+        return dslContext.lastID().toLong()
+    }
 }
