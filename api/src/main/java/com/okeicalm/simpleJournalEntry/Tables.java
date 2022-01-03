@@ -4,7 +4,7 @@
 package com.okeicalm.simpleJournalEntry;
 
 
-import com.okeicalm.simpleJournalEntry.tables.Users;
+import com.okeicalm.simpleJournalEntry.tables.Accounts;
 
 
 /**
@@ -14,7 +14,7 @@ import com.okeicalm.simpleJournalEntry.tables.Users;
 public class Tables {
 
     /**
-     * The table <code>simple_journal_entry_db.users</code>.
+     * The table <code>simple_journal_entry_db.accounts</code>.
      */
-    public static final Users USERS = Users.USERS;
+    public static final Accounts ACCOUNTS = Accounts.ACCOUNTS;
 }

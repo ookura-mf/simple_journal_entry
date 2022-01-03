@@ -16,6 +16,12 @@ group = "com.okeicalm"
 version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_11
 
+configurations {
+    compileOnly {
+        extendsFrom(configurations.annotationProcessor.get())
+    }
+}
+
 repositories {
     mavenCentral()
     maven { url = uri("https://repo.spring.io/milestone") }
@@ -25,18 +31,18 @@ repositories {
 val graphqlKotlinVersion = "5.1.0"
 
 dependencies {
-    implementation("org.springframework.boot:spring-boot-starter-jooq:2.5.6")
+    implementation("org.springframework.boot:spring-boot-starter-jooq:2.6.2")
     implementation("org.jooq:jooq-codegen:3.15.5")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("com.expediagroup", "graphql-kotlin-spring-server", graphqlKotlinVersion)
     implementation("com.expediagroup", "graphql-kotlin-schema-generator", graphqlKotlinVersion)
-    implementation("org.flywaydb:flyway-core:8.2.3")
-    implementation("org.flywaydb:flyway-mysql:8.2.3")
+    implementation("org.flywaydb:flyway-core:8.3.0")
+    implementation("org.flywaydb:flyway-mysql:8.3.0")
     jooqGenerator("mysql:mysql-connector-java:8.0.25")
-    developmentOnly("org.springframework.boot:spring-boot-devtools:2.6.1")
+    developmentOnly("org.springframework.boot:spring-boot-devtools:2.6.2")
     runtimeOnly("mysql:mysql-connector-java:8.0.25")
-    testImplementation("org.springframework.boot:spring-boot-starter-test:2.6.1")
+    testImplementation("org.springframework.boot:spring-boot-starter-test:2.6.2")
 }
 
 jooq {

@@ -4,8 +4,8 @@
 package com.okeicalm.simpleJournalEntry;
 
 
-import com.okeicalm.simpleJournalEntry.tables.Users;
-import com.okeicalm.simpleJournalEntry.tables.records.UsersRecord;
+import com.okeicalm.simpleJournalEntry.tables.Accounts;
+import com.okeicalm.simpleJournalEntry.tables.records.AccountsRecord;
 
 import org.jooq.TableField;
 import org.jooq.UniqueKey;
@@ -24,5 +24,6 @@ public class Keys {
     // UNIQUE and PRIMARY KEY definitions
     // -------------------------------------------------------------------------
 
-    public static final UniqueKey<UsersRecord> KEY_USERS_PRIMARY = Internal.createUniqueKey(Users.USERS, DSL.name("KEY_users_PRIMARY"), new TableField[] { Users.USERS.ID }, true);
+    public static final UniqueKey<AccountsRecord> KEY_ACCOUNTS_CODE = Internal.createUniqueKey(Accounts.ACCOUNTS, DSL.name("KEY_accounts_code"), new TableField[] { Accounts.ACCOUNTS.CODE }, true);
+    public static final UniqueKey<AccountsRecord> KEY_ACCOUNTS_PRIMARY = Internal.createUniqueKey(Accounts.ACCOUNTS, DSL.name("KEY_accounts_PRIMARY"), new TableField[] { Accounts.ACCOUNTS.ID }, true);
 }
