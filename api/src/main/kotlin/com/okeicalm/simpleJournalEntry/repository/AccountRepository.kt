@@ -10,4 +10,6 @@ interface AccountRepository {
     fun create(account: Account): Long
 
     fun update(id: Long, account: Account): Boolean
+
+    fun delete(id: Long): Long
 }

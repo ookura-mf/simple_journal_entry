@@ -50,4 +50,12 @@ class AccountJdbcRepository @Autowired constructor(private val dslContext: DSLCo
         }
         return true
     }
+
+    override fun delete(id: Long): Long {
+        dslContext
+            .delete(Accounts.ACCOUNTS)
+            .where(Accounts.ACCOUNTS.ID.eq(id))
+            .execute()
+        return id
+    }
 }
