@@ -8,4 +8,6 @@ interface AccountRepository {
     fun findById(id: Long): Account?
 
     fun create(account: Account): Long
+
+    fun update(id: Long, account: Account): Boolean
 }
