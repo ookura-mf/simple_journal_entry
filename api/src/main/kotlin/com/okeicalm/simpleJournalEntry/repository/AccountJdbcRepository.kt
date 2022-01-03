@@ -16,4 +16,13 @@ class AccountJdbcRepository @Autowired constructor(private val dslContext: DSLCo
 
         return result.map { r -> Account(r) }
     }
+
+    override fun findById(id: Long): Account? {
+        val accountPOJO: com.okeicalm.simpleJournalEntry.tables.pojos.Accounts? = dslContext
+            .fetchOne(Accounts.ACCOUNTS, Accounts.ACCOUNTS.ID.eq(id))
+            ?.into(com.okeicalm.simpleJournalEntry.tables.pojos.Accounts::class.java)
+
+        return accountPOJO?.let { Account(it) }
+    }
+
 }

@@ -4,4 +4,5 @@ import com.okeicalm.simpleJournalEntry.entity.Account
 
 interface AccountRepository {
     fun findAll(): List<Account>
+    fun findById(id: Long): Account?
 }
