@@ -14,15 +14,8 @@ class AccountUpdatingUseCase(private val accountRepository: AccountRepository) {
             name = name,
             elementType = elementType
         )
-        if (accountRepository.update(id, account)) {
-            // Is it necessary?
-            val updatedAccount = accountRepository.findById(id)
+        accountRepository.update(id, account)
 
-            // TODO: fix it.
-            return updatedAccount!!
-        } else {
-            // TODO: fix it.
-            throw Exception("Update error. Something wrong...")
-        }
+        return accountRepository.findById(id) ?: throw Exception("AccountingUpdateUseCase: Something wrong...")
     }
 }

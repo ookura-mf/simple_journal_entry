@@ -35,20 +35,15 @@ class AccountJdbcRepository @Autowired constructor(private val dslContext: DSLCo
         return dslContext.lastID().toLong()
     }
 
-    override fun update(id: Long, account: Account): Boolean {
-        try {
-            dslContext
-                .update(Accounts.ACCOUNTS)
-                .set(Accounts.ACCOUNTS.CODE, account.code)
-                .set(Accounts.ACCOUNTS.NAME, account.name)
-                .set(Accounts.ACCOUNTS.ELEMENT_TYPE, account.elementType)
-                .where(Accounts.ACCOUNTS.ID.eq(id))
-                .execute()
-        } catch (e: Exception) { // TODO: fix it!!
-            println(e)
-            return false
-        }
-        return true
+    override fun update(id: Long, account: Account): Long {
+        dslContext
+            .update(Accounts.ACCOUNTS)
+            .set(Accounts.ACCOUNTS.CODE, account.code)
+            .set(Accounts.ACCOUNTS.NAME, account.name)
+            .set(Accounts.ACCOUNTS.ELEMENT_TYPE, account.elementType)
+            .where(Accounts.ACCOUNTS.ID.eq(id))
+            .execute()
+        return id
     }
 
     override fun delete(id: Long): Long {

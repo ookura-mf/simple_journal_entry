@@ -16,9 +16,6 @@ class AccountCreationUseCase(private val accountRepository: AccountRepository) {
         )
         val newAccountId = accountRepository.create(account)
         println(newAccountId)
-        val newAccount = accountRepository.findById(newAccountId)
-
-        // TODO: fix it.
-        return newAccount!!
+        return accountRepository.findById(newAccountId) ?: throw Exception("AccountCreationUseCase: Something wrong...")
     }
 }
