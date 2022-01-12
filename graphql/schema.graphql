@@ -1,5 +1,6 @@
 schema {
   query: Query
+  mutation: Mutation
 }
 
 "Directs the executor to include this field or fragment only when the `if` argument is true"
@@ -26,11 +27,52 @@ directive @specifiedBy(
     url: String!
   ) on SCALAR
 
-type Query {
-  newUsers: [User!]!
+type Account {
+  code: String!
+  elementType: Int!
+  id: ID!
+  name: String!
 }
 
-type User {
+type DeleteAccountPayload {
+  deletedAccount: Account
+}
+
+type Journal {
+  id: ID!
+  journalEntries: [JournalEntry!]!
+}
+
+type JournalEntry {
+  id: ID!
+  side: Int!
+  value: Int!
+}
+
+type Mutation {
+  createAccount(input: CreateAccountInput!): Account!
+  deleteAccount(input: DeleteAccountInput!): DeleteAccountPayload!
+  updateAccount(input: UpdateAccountInput!): Account!
+}
+
+type Query {
+  allAccounts: [Account!]!
+  allJournals: [Journal!]!
+}
+
+input CreateAccountInput {
+  code: String!
+  elementType: Int!
+  name: String!
+}
+
+input DeleteAccountInput {
+  id: ID!
+}
+
+input UpdateAccountInput {
+  code: String!
+  elementType: Int!
   id: ID!
   name: String!
 }
