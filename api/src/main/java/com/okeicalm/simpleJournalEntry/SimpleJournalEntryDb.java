@@ -5,6 +5,8 @@ package com.okeicalm.simpleJournalEntry;
 
 
 import com.okeicalm.simpleJournalEntry.tables.Accounts;
+import com.okeicalm.simpleJournalEntry.tables.JournalEntries;
+import com.okeicalm.simpleJournalEntry.tables.Journals;
 
 import java.util.Arrays;
 import java.util.List;
@@ -33,6 +35,16 @@ public class SimpleJournalEntryDb extends SchemaImpl {
     public final Accounts ACCOUNTS = Accounts.ACCOUNTS;
 
     /**
+     * The table <code>simple_journal_entry_db.journal_entries</code>.
+     */
+    public final JournalEntries JOURNAL_ENTRIES = JournalEntries.JOURNAL_ENTRIES;
+
+    /**
+     * The table <code>simple_journal_entry_db.journals</code>.
+     */
+    public final Journals JOURNALS = Journals.JOURNALS;
+
+    /**
      * No further instances allowed
      */
     private SimpleJournalEntryDb() {
@@ -48,7 +60,9 @@ public class SimpleJournalEntryDb extends SchemaImpl {
     @Override
     public final List<Table<?>> getTables() {
         return Arrays.asList(
-            Accounts.ACCOUNTS
+            Accounts.ACCOUNTS,
+            JournalEntries.JOURNAL_ENTRIES,
+            Journals.JOURNALS
         );
     }
 }
