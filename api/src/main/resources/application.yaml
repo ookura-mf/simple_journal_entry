@@ -10,3 +10,6 @@ spring:
     url: ${MYSQL_URL}
     user: ${MYSQL_USER}
     password: ${MYSQL_PASSWORD}
+logging:
+  level:
+    sql: "debug"
