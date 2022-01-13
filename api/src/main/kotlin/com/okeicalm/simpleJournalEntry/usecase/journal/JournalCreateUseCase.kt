@@ -10,22 +10,22 @@ import org.springframework.transaction.annotation.Transactional
 import java.time.LocalDate
 
 data class JournalEntryInputData(val side: Byte, val accountID: Long, val value: Int)
-data class JournalCreationInputData(val incurredOn: LocalDate, val journalEntryInputDatum: List<JournalEntryInputData>)
-data class JournalCreationOutputData(val journal: Journal, val journalEntries: List<JournalEntry>)
+data class JournalCreateUseCaseInput(val incurredOn: LocalDate, val journalEntryInputDatum: List<JournalEntryInputData>)
+data class JournalCreateUseCaseOutput(val journal: Journal, val journalEntries: List<JournalEntry>)
 
 data class SearchParams(override val journalId: Long, override val journalIds: List<Long>?) : JournalEntrySearchParams
 
-interface IJournalCreationUseCase {
-    fun call(input: JournalCreationInputData): JournalCreationOutputData
+interface JournalCreateUseCase {
+    fun call(input: JournalCreateUseCaseInput): JournalCreateUseCaseOutput
 }
 
 @Service
-class JournalCreationUseCase(
+class JournalCreateUseCaseImpl(
     private val journalRepository: JournalRepository,
     private val journalEntryRepository: JournalEntryRepository
-) : IJournalCreationUseCase {
+) : JournalCreateUseCase {
     @Transactional
-    override fun call(input: JournalCreationInputData): JournalCreationOutputData {
+    override fun call(input: JournalCreateUseCaseInput): JournalCreateUseCaseOutput {
         val journal = Journal(
             incurredOn = input.incurredOn,
             journalEntries = emptyList(),
@@ -33,7 +33,7 @@ class JournalCreationUseCase(
 
         val newJournalId = journalRepository.create(journal)
         val newJournal =
-            journalRepository.findById(newJournalId) ?: throw Exception("JournalCreationUseCase: Something wrong...")
+            journalRepository.findById(newJournalId) ?: throw Exception("JournalCreateUseCase: Something wrong...")
 
         val journalEntries = input.journalEntryInputDatum.map {
             JournalEntry(
@@ -46,6 +46,6 @@ class JournalCreationUseCase(
         journalEntryRepository.bulkCreate(journalEntries)
         val newJournalEntries = journalEntryRepository.search(SearchParams(newJournalId, null))
 
-        return JournalCreationOutputData(newJournal, newJournalEntries)
+        return JournalCreateUseCaseOutput(newJournal, newJournalEntries)
     }
 }
