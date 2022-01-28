@@ -7,6 +7,7 @@ package com.okeicalm.simpleJournalEntry;
 import com.okeicalm.simpleJournalEntry.tables.Accounts;
 import com.okeicalm.simpleJournalEntry.tables.JournalEntries;
 import com.okeicalm.simpleJournalEntry.tables.Journals;
+import com.okeicalm.simpleJournalEntry.tables.Users;
 
 import java.util.Arrays;
 import java.util.List;
@@ -45,6 +46,11 @@ public class SimpleJournalEntryDb extends SchemaImpl {
     public final Journals JOURNALS = Journals.JOURNALS;
 
     /**
+     * The table <code>simple_journal_entry_db.users</code>.
+     */
+    public final Users USERS = Users.USERS;
+
+    /**
      * No further instances allowed
      */
     private SimpleJournalEntryDb() {
@@ -62,7 +68,8 @@ public class SimpleJournalEntryDb extends SchemaImpl {
         return Arrays.asList(
             Accounts.ACCOUNTS,
             JournalEntries.JOURNAL_ENTRIES,
-            Journals.JOURNALS
+            Journals.JOURNALS,
+            Users.USERS
         );
     }
 }
