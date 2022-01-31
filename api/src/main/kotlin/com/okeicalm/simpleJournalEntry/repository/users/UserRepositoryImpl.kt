@@ -1,4 +1,4 @@
-package com.okeicalm.simpleJournalEntry.repository
+package com.okeicalm.simpleJournalEntry.repository.users
 
 import com.okeicalm.simpleJournalEntry.entity.user.User
 import com.okeicalm.simpleJournalEntry.entity.user.UserId

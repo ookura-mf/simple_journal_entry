@@ -4,7 +4,7 @@ package com.okeicalm.simpleJournalEntry.entity.user
 import com.okeicalm.simpleJournalEntry.tables.pojos.Users
 
 data class User(
-    val id:   UserId,
+    val id:   UserId = UserId(0),
     val name: UserName
 ) {
     // Enity に jOOQ の関心が漏れ出しているとも言える(が潔癖症すぎる考えかも)
