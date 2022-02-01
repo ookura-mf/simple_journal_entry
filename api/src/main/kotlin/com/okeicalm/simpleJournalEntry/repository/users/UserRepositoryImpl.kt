@@ -2,6 +2,7 @@ package com.okeicalm.simpleJournalEntry.repository.users
 
 import com.okeicalm.simpleJournalEntry.entity.user.User
 import com.okeicalm.simpleJournalEntry.entity.user.UserId
+import com.okeicalm.simpleJournalEntry.entity.user.UserName
 import com.okeicalm.simpleJournalEntry.tables.Users.*
 import com.okeicalm.simpleJournalEntry.tables.pojos.Users
 import org.jooq.DSLContext
@@ -10,6 +11,12 @@ import org.springframework.stereotype.Repository
 
 @Repository
 class UserRepositoryImpl(private val dslContext: DSLContext): UserRepository {
+
+    override fun findAll(): List<User> {
+        return dslContext.selectFrom(USERS)
+                .fetchInto(Users::class.java)
+                .map { User(UserId(it.id), UserName(it.name)) }
+    }
 
     override fun findById(id: UserId): User? {
         val result = dslContext

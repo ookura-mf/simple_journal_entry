@@ -4,6 +4,8 @@ import com.okeicalm.simpleJournalEntry.entity.user.*
 
 // これはドメイン層に置かれる想定
 interface UserRepository {
+    fun findAll(): List<User>
+
     fun findById(id: UserId): User?
 
     fun create(user: User): UserId
