@@ -15,6 +15,4 @@ data class UserType (
         ID(user.id.value.toString()),
         user.name.value
     )
-
-
 }
