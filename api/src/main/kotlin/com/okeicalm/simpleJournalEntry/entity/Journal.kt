@@ -13,7 +13,7 @@ data class Journal(
     constructor(journal: Journals, journalEntries: List<JournalEntries>?) : this(
         journal.id,
         journal.incurredOn,
-//        journalEntries?.map { JournalEntry(it) },
-        null,
+        journalEntries?.map { JournalEntry(it) },
+//        null,
     )
 }
