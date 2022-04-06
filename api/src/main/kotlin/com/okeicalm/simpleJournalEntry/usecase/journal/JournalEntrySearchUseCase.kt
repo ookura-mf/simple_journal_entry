@@ -1,4 +1,4 @@
-package com.okeicalm.simpleJournalEntry.fetcher
+package com.okeicalm.simpleJournalEntry.usecase.journal
 
 import com.okeicalm.simpleJournalEntry.entity.JournalEntry
 import com.okeicalm.simpleJournalEntry.repository.JournalEntryRepository

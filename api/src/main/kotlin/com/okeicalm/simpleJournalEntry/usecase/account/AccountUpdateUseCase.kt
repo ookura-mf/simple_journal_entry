@@ -13,17 +13,16 @@ interface AccountUpdateUseCase {
 }
 
 @Service
-class AccountUpdateUseCaseImpl(private val accountRepository: AccountRepository): AccountUpdateUseCase {
+class AccountUpdateUseCaseImpl(private val accountRepository: AccountRepository) : AccountUpdateUseCase {
     @Transactional
     override fun call(input: AccountUpdateUseCaseInput): AccountUpdateUseCaseOutput {
         val account = Account(
+            id = input.id,
             code = input.code,
             name = input.name,
             elementType = input.elementType
         )
-        accountRepository.update(input.id, account)
 
-        val updatedAccount = accountRepository.findById(input.id) ?: throw Exception("AccountingUpdateUseCase: Something wrong...")
-        return AccountUpdateUseCaseOutput(updatedAccount)
+        return AccountUpdateUseCaseOutput(accountRepository.update(account))
     }
 }

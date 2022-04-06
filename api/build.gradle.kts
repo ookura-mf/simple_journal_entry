@@ -15,7 +15,7 @@ plugins {
 
 group = "com.okeicalm"
 version = "0.0.1-SNAPSHOT"
-java.sourceCompatibility = JavaVersion.VERSION_11
+java.sourceCompatibility = JavaVersion.VERSION_17
 
 configurations {
     compileOnly {
@@ -32,8 +32,8 @@ repositories {
 val graphqlKotlinVersion = "5.1.0"
 
 dependencies {
-    implementation("org.springframework.boot:spring-boot-starter-jooq:2.6.3")
-    implementation("org.jooq:jooq-codegen:3.15.5")
+    implementation("org.springframework.boot:spring-boot-starter-jooq:2.6.5")
+    implementation("org.jooq:jooq-codegen:3.16.5")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("com.expediagroup", "graphql-kotlin-spring-server", graphqlKotlinVersion)
@@ -42,9 +42,9 @@ dependencies {
     implementation("org.flywaydb:flyway-mysql:8.3.0")
     jooqGenerator("jakarta.xml.bind:jakarta.xml.bind-api:3.0.1")
     jooqGenerator("mysql:mysql-connector-java:8.0.25")
-    developmentOnly("org.springframework.boot:spring-boot-devtools:2.6.3")
+    developmentOnly("org.springframework.boot:spring-boot-devtools:2.6.5")
     runtimeOnly("mysql:mysql-connector-java:8.0.25")
-    testImplementation("org.springframework.boot:spring-boot-starter-test:2.6.3")
+    testImplementation("org.springframework.boot:spring-boot-starter-test:2.6.5")
     testImplementation("io.kotest:kotest-runner-junit5:5.1.0")
     testImplementation("io.kotest.extensions:kotest-extensions-spring:1.1.0")
     testImplementation("com.ninja-squad:springmockk:3.1.0")
@@ -62,7 +62,7 @@ jooq {
                     url = System.getenv("MYSQL_URL")
                 }
                 generator.apply {
-                    name = "org.jooq.codegen.JavaGenerator"
+                    name = "org.jooq.codegen.KotlinGenerator"
                     database.apply {
                         name = "org.jooq.meta.mysql.MySQLDatabase"
                         inputSchema = "simple_journal_entry_db"
@@ -70,19 +70,11 @@ jooq {
                     }
                     generate.apply {
                         isDeprecated = false
-                        isImmutablePojos = true
-                        isRecords = true
-                        isDaos = true
-                        isSpringAnnotations = true
-                        isJavaTimeTypes = true
-                        isFluentSetters = true
                     }
                     target.apply {
-                        packageName = "com.okeicalm.simpleJournalEntry"
-                        directory = "${project.rootDir}/src/main/java"
+                        packageName = "com.okeicalm.simpleJournalEntry.infra.db"
+                        directory = "${project.rootDir}/src/main/generated"
                     }
-                    // TODO: これを指定するとClassNotFoundErrorになるので諦めた
-                    // strategy.name = "com.okeicalm.simpleJournalEntry.CustomGeneratorStrategy"
                 }
             }
         }
@@ -104,7 +96,7 @@ graphql {
 tasks.withType<KotlinCompile> {
     kotlinOptions {
         freeCompilerArgs = listOf("-Xjsr305=strict")
-        jvmTarget = "11"
+        jvmTarget = "17"
     }
 }
 
