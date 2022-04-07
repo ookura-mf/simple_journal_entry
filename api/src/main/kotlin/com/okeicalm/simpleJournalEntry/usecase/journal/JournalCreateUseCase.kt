@@ -31,21 +31,19 @@ class JournalCreateUseCaseImpl(
             journalEntries = emptyList(),
         )
 
-        val newJournalId = journalRepository.create(journal)
-        val newJournal =
-            journalRepository.findById(newJournalId) ?: throw Exception("JournalCreateUseCase: Something wrong...")
+        val createdJournal = journalRepository.create(journal)
 
         val journalEntries = input.journalEntryInputDatum.map {
             JournalEntry(
-                journalId = newJournalId,
+                journalId = createdJournal.id,
                 side = it.side,
                 accountId = it.accountID,
                 value = it.value,
             )
         }
         journalEntryRepository.bulkCreate(journalEntries)
-        val newJournalEntries = journalEntryRepository.search(SearchParams(newJournalId, null))
+        val createdJournalEntries = journalEntryRepository.search(SearchParams(createdJournal.id, null))
 
-        return JournalCreateUseCaseOutput(newJournal, newJournalEntries)
+        return JournalCreateUseCaseOutput(createdJournal, createdJournalEntries)
     }
 }

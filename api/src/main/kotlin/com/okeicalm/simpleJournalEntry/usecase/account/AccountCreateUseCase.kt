@@ -21,8 +21,6 @@ class AccountCreateUseCaseImpl(private val accountRepository: AccountRepository)
             name = input.name,
             elementType = input.elementType
         )
-        val newAccountId = accountRepository.create(account)
-        val newAccount = accountRepository.findById(newAccountId) ?: throw Exception("AccountCreateUseCase: Something wrong...")
-        return AccountCreateUseCaseOutput(newAccount)
+        return AccountCreateUseCaseOutput(accountRepository.create(account))
     }
 }
