@@ -3,7 +3,7 @@ import org.gradle.kotlin.dsl.flyway
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("org.springframework.boot") version "2.7.0-SNAPSHOT"
+    id("org.springframework.boot") version "2.6.5"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
     id("com.expediagroup.graphql") version "5.1.0"
     id("nu.studer.jooq") version "6.0.1"
@@ -29,6 +29,8 @@ repositories {
     maven { url = uri("https://repo.spring.io/snapshot") }
 }
 
+extra["kotlin-coroutines.version"] = "1.6.0"
+
 val graphqlKotlinVersion = "5.1.0"
 
 dependencies {
@@ -48,6 +50,7 @@ dependencies {
     testImplementation("io.kotest:kotest-runner-junit5:5.1.0")
     testImplementation("io.kotest.extensions:kotest-extensions-spring:1.1.0")
     testImplementation("com.ninja-squad:springmockk:3.1.0")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.0")
 }
 
 jooq {
