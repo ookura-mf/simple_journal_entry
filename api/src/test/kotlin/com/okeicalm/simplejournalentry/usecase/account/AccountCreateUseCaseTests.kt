@@ -17,34 +17,18 @@ class AccountCreateUseCaseTests : DescribeSpec({
     }
 
     describe("call") {
-        context("When persisting account is success") {
-            val input = AccountCreateUseCaseInput("code", "name", 1)
-            val account = Account(code = "code", name = "name", elementType = 1)
+        val input = AccountCreateUseCaseInput("code", "name", 1)
+        val account = Account(code = "code", name = "name", elementType = 1)
 
-            every { repository.create(account) } returns account.copy(id = 1)
-            every { repository.findById(1) } returns account.copy(id = 1)
+        every { repository.create(account) } returns account.copy(id = 1)
+        every { repository.findById(1) } returns account.copy(id = 1)
 
-            it("returns new account") {
-                val output = usecase.call(input)
-                output.account.id.shouldBe(1)
-                output.account.code.shouldBe("code")
-                output.account.name.shouldBe("name")
-                output.account.elementType.shouldBe(1)
-            }
-        }
-
-        context("When persisting account is failed") {
-            val input = AccountCreateUseCaseInput("code", "name", 1)
-            val account = Account(code = "code", name = "name", elementType = 1)
-
-            every { repository.create(account) } returns account.copy(id = 1)
-            every { repository.findById(1) } returns null
-
-            it("throws Exception") {
-                shouldThrow<Exception> {
-                    usecase.call(input)
-                }
-            }
+        it("returns new account") {
+            val output = usecase.call(input)
+            output.account.id.shouldBe(1)
+            output.account.code.shouldBe("code")
+            output.account.name.shouldBe("name")
+            output.account.elementType.shouldBe(1)
         }
     }
 })
