@@ -38,3 +38,4 @@ out/
 
 ### mysql of docker ###
 docker/mysql/store/
+.DS_Store
