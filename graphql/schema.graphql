@@ -40,17 +40,20 @@ type DeleteAccountPayload {
 
 type Journal {
   id: ID!
-  journalEntries: [JournalEntry!]!
+  journalEntries: [JournalEntry!]
 }
 
 type JournalEntry {
+  accountId: ID!
   id: ID!
+  journalId: ID!
   side: Int!
   value: Int!
 }
 
 type Mutation {
   createAccount(input: CreateAccountInput!): Account!
+  createJournal(input: CreateJournalInput!): Journal!
   deleteAccount(input: DeleteAccountInput!): DeleteAccountPayload!
   updateAccount(input: UpdateAccountInput!): Account!
 }
@@ -64,6 +67,17 @@ input CreateAccountInput {
   code: String!
   elementType: Int!
   name: String!
+}
+
+input CreateJournalEntryInput {
+  accountID: ID!
+  side: Int!
+  value: Int!
+}
+
+input CreateJournalInput {
+  createJournalEntryInput: [CreateJournalEntryInput!]!
+  incurredOn: Int!
 }
 
 input DeleteAccountInput {
