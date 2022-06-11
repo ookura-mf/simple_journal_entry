@@ -10,10 +10,10 @@ const val journalTypeGraphQLName = "Journal"
 data class JournalType(
     val id: ID,
 //    val incurredOn: LocalDate,
-    val journalEntries: List<JournalEntryType>?,
+    val journalEntries: List<JournalEntryType>,
 ) {
     constructor(journal: Journal) : this(
         ID(journal.id.toString()),
-        journal.journalEntries?.map { JournalEntryType(it) }
+        journal.journalEntries.map { JournalEntryType(it) }
     )
 }
