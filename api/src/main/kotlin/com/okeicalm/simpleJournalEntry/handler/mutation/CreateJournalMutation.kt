@@ -31,6 +31,7 @@ class CreateJournalMutation(private val journalCreateUseCase: JournalCreateUseCa
 
         return JournalType(
             id = ID(outputData.journal.id.toString()),
+            incurredOn = outputData.journal.incurredOn,
             journalEntries = outputData.journal.journalEntries.map { JournalEntryType(it) }
         )
     }
