@@ -41,6 +41,7 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("com.expediagroup", "graphql-kotlin-spring-server", graphqlKotlinVersion)
     implementation("com.expediagroup", "graphql-kotlin-schema-generator", graphqlKotlinVersion)
+    implementation("com.graphql-java:graphql-java-extended-scalars:17.0")
     implementation("org.flywaydb:flyway-core:8.3.0")
     implementation("org.flywaydb:flyway-mysql:8.3.0")
     jooqGenerator("jakarta.xml.bind:jakarta.xml.bind-api:3.0.1")
