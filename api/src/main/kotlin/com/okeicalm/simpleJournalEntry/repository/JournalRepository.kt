@@ -16,25 +16,39 @@ interface JournalRepository {
 @Repository
 class JournalRepositoryImpl(private val dslContext: DSLContext) : JournalRepository {
     override fun findAll(): List<Journal> {
-        return dslContext
+        val records = dslContext
             .select(
                 JOURNALS.ID,
                 JOURNALS.INCURRED_ON,
                 JOURNAL_ENTRIES.ID,
                 JOURNAL_ENTRIES.JOURNAL_ID,
+                JOURNAL_ENTRIES.ACCOUNT_ID,
                 JOURNAL_ENTRIES.SIDE,
                 JOURNAL_ENTRIES.VALUE,
             )
             .from(JOURNALS)
             .join(JOURNAL_ENTRIES)
             .on(JOURNALS.ID.eq(JOURNAL_ENTRIES.JOURNAL_ID))
-            .fetch {
-                Journal(
-                    id = it.getValue(JOURNALS.ID)!!,
-                    incurredOn = it.getValue(JOURNALS.INCURRED_ON)!!,
-                    journalEntries = listOf(),
+            .fetch()
+
+        val journalMap = records.groupBy { it[JOURNALS.ID] }
+
+        return journalMap.map { j ->
+            val journalEntries = j.value.map { je ->
+                JournalEntry(
+                    id = je.getValue(JOURNAL_ENTRIES.ID)!!,
+                    journalId = je.getValue(JOURNAL_ENTRIES.JOURNAL_ID)!!,
+                    accountId = je.getValue(JOURNAL_ENTRIES.ACCOUNT_ID)!!,
+                    side = je.getValue(JOURNAL_ENTRIES.SIDE)!!,
+                    value = je.getValue(JOURNAL_ENTRIES.VALUE)!!,
                 )
             }
+            Journal(
+                id = j.key!!,
+                incurredOn = j.value.first().getValue(JOURNALS.INCURRED_ON)!!,
+                journalEntries = journalEntries,
+            )
+        }
     }
 
     override fun findById(id: Long): Journal? {
