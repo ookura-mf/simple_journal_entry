@@ -11,6 +11,7 @@ plugins {
     id("org.jlleitschuh.gradle.ktlint") version "10.2.1"
     kotlin("jvm") version "1.6.0"
     kotlin("plugin.spring") version "1.6.0"
+    kotlin("kapt") version "1.6.0"
 }
 
 group = "com.okeicalm"
