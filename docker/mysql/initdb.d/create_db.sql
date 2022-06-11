@@ -1,1 +1,1 @@
-create database simple_journal_entry;
+create database simple_journal_entry_db;
