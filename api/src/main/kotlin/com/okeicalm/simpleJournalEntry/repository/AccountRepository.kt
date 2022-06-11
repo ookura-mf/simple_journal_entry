@@ -2,12 +2,14 @@ package com.okeicalm.simpleJournalEntry.repository
 
 import com.okeicalm.simpleJournalEntry.entity.Account
 import com.okeicalm.simpleJournalEntry.infra.db.tables.Accounts
+import com.okeicalm.simpleJournalEntry.infra.db.tables.references.ACCOUNTS
 import org.jooq.DSLContext
 import org.springframework.stereotype.Repository
 
 interface AccountRepository {
     fun findAll(): List<Account>
     fun findById(id: Long): Account?
+    fun filterByIds(ids: List<Long>): List<Account>
     fun create(account: Account): Account
     fun update(account: Account): Account
     fun delete(id: Long): Long
@@ -26,6 +28,14 @@ class AccountRepositoryImpl(private val dslContext: DSLContext) : AccountReposit
         return dslContext
             .fetchOne(Accounts.ACCOUNTS, Accounts.ACCOUNTS.ID.eq(id))
             ?.into(Account::class.java)
+    }
+
+    override fun filterByIds(ids: List<Long>): List<Account> {
+       return dslContext
+           .select()
+           .from(ACCOUNTS)
+           .where(ACCOUNTS.ID.`in`(ids))
+           .fetchInto(Account::class.java)
     }
 
     override fun create(account: Account): Account {
