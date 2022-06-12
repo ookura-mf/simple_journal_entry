@@ -5,9 +5,10 @@ import com.expediagroup.graphql.server.operations.Mutation
 import com.okeicalm.simpleJournalEntry.handler.type.AccountType
 import com.okeicalm.simpleJournalEntry.usecase.account.AccountUpdateUseCase
 import com.okeicalm.simpleJournalEntry.usecase.account.AccountUpdateUseCaseInput
+import com.okeicalm.simpleJournalEntry.valueobject.AccountElementType
 import org.springframework.stereotype.Component
 
-data class UpdateAccountInput(val id: ID, val code: String, val name: String, val elementType: Int)
+data class UpdateAccountInput(val id: ID, val code: String, val name: String, val elementType: AccountElementType)
 
 @Component
 class UpdateAccountMutation(private val accountUpdateUseCase: AccountUpdateUseCase) : Mutation {

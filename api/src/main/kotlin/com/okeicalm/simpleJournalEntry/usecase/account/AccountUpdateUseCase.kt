@@ -2,10 +2,11 @@ package com.okeicalm.simpleJournalEntry.usecase.account
 
 import com.okeicalm.simpleJournalEntry.entity.Account
 import com.okeicalm.simpleJournalEntry.repository.AccountRepository
+import com.okeicalm.simpleJournalEntry.valueobject.AccountElementType
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
-data class AccountUpdateUseCaseInput(val id: Long, val code: String, val name: String, val elementType: Int)
+data class AccountUpdateUseCaseInput(val id: Long, val code: String, val name: String, val elementType: AccountElementType)
 data class AccountUpdateUseCaseOutput(val account: Account)
 
 interface AccountUpdateUseCase {

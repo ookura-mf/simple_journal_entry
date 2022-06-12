@@ -2,18 +2,19 @@ package com.okeicalm.simpleJournalEntry.usecase.account
 
 import com.okeicalm.simpleJournalEntry.entity.Account
 import com.okeicalm.simpleJournalEntry.repository.AccountRepository
+import com.okeicalm.simpleJournalEntry.valueobject.AccountElementType
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
-data class AccountCreateUseCaseInput(val code: String, val name: String, val elementType: Int)
+data class AccountCreateUseCaseInput(val code: String, val name: String, val elementType: AccountElementType)
 data class AccountCreateUseCaseOutput(val account: Account)
 
-interface AccountCreateUseCase{
+interface AccountCreateUseCase {
     fun call(input: AccountCreateUseCaseInput): AccountCreateUseCaseOutput
 }
 
 @Service
-class AccountCreateUseCaseImpl(private val accountRepository: AccountRepository): AccountCreateUseCase {
+class AccountCreateUseCaseImpl(private val accountRepository: AccountRepository) : AccountCreateUseCase {
     @Transactional
     override fun call(input: AccountCreateUseCaseInput): AccountCreateUseCaseOutput {
         val account = Account(
