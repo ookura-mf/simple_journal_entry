@@ -5,6 +5,7 @@ package com.okeicalm.simpleJournalEntry.infra.db.tables
 
 
 import com.okeicalm.simpleJournalEntry.infra.db.SimpleJournalEntryDb
+import com.okeicalm.simpleJournalEntry.infra.db.enums.AccountsElementType
 import com.okeicalm.simpleJournalEntry.infra.db.keys.KEY_ACCOUNTS_CODE
 import com.okeicalm.simpleJournalEntry.infra.db.keys.KEY_ACCOUNTS_PRIMARY
 import com.okeicalm.simpleJournalEntry.infra.db.tables.records.AccountsRecord
@@ -80,7 +81,7 @@ open class Accounts(
     /**
      * The column <code>simple_journal_entry_db.accounts.element_type</code>.
      */
-    val ELEMENT_TYPE: TableField<AccountsRecord, Int?> = createField(DSL.name("element_type"), SQLDataType.INTEGER.nullable(false), this, "")
+    val ELEMENT_TYPE: TableField<AccountsRecord, AccountsElementType?> = createField(DSL.name("element_type"), SQLDataType.VARCHAR(11).nullable(false).asEnumDataType(com.okeicalm.simpleJournalEntry.infra.db.enums.AccountsElementType::class.java), this, "")
 
     private constructor(alias: Name, aliased: Table<AccountsRecord>?): this(alias, null, null, aliased, null)
     private constructor(alias: Name, aliased: Table<AccountsRecord>?, parameters: Array<Field<*>?>?): this(alias, null, null, aliased, parameters)
@@ -123,5 +124,5 @@ open class Accounts(
     // -------------------------------------------------------------------------
     // Row4 type methods
     // -------------------------------------------------------------------------
-    override fun fieldsRow(): Row4<Long?, String?, String?, Int?> = super.fieldsRow() as Row4<Long?, String?, String?, Int?>
+    override fun fieldsRow(): Row4<Long?, String?, String?, AccountsElementType?> = super.fieldsRow() as Row4<Long?, String?, String?, AccountsElementType?>
 }
