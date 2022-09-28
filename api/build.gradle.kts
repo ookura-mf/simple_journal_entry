@@ -36,6 +36,7 @@ val graphqlKotlinVersion = "5.1.0"
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-jooq:2.6.5")
+    implementation("com.expediagroup", "graphql-kotlin-hooks-provider", graphqlKotlinVersion)
     implementation("org.jooq:jooq-codegen:3.16.5")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
