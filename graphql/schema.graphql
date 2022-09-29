@@ -29,7 +29,7 @@ directive @specifiedBy(
 
 type Account {
   code: String!
-  elementType: Int!
+  elementType: AccountElementType!
   id: ID!
   name: String!
 }
@@ -40,13 +40,13 @@ type DeleteAccountPayload {
 
 type Journal {
   id: ID!
-  journalEntries: [JournalEntry!]
+  incurredOn: Date!
+  journalEntries: [JournalEntry!]!
 }
 
 type JournalEntry {
-  accountId: ID!
+  account: Account!
   id: ID!
-  journalId: ID!
   side: Int!
   value: Int!
 }
@@ -63,9 +63,21 @@ type Query {
   allJournals: [Journal!]!
 }
 
+enum AccountElementType {
+  ASSETS
+  EXPENSES
+  LIABILITIES
+  NET_ASSETS
+  NET_INCOME
+  REVENUE
+}
+
+"An RFC-3339 compliant Full Date Scalar"
+scalar Date
+
 input CreateAccountInput {
   code: String!
-  elementType: Int!
+  elementType: AccountElementType!
   name: String!
 }
 
@@ -86,7 +98,7 @@ input DeleteAccountInput {
 
 input UpdateAccountInput {
   code: String!
-  elementType: Int!
+  elementType: AccountElementType!
   id: ID!
   name: String!
 }
