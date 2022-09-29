@@ -1,2 +1,2 @@
-com.okeicalm.simpleJournalEntry.handler.scalar.MyCustomSchemaGeneratorHooksProvider
+com.okeicalm.simpleJournalEntry.handler.scalar.CustomSchemaGeneratorHooksProvider
 
