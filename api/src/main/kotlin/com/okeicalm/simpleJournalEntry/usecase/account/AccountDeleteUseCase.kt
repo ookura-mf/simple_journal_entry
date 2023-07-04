@@ -8,12 +8,12 @@ import org.springframework.transaction.annotation.Transactional
 data class AccountDeleteUseCaseInput(val id: Long)
 data class AccountDeleteUseCaseOutput(val account: Account?)
 
-interface AccountDeleteUseCase{
+interface AccountDeleteUseCase {
     fun call(input: AccountDeleteUseCaseInput): AccountDeleteUseCaseOutput
 }
 
 @Service
-class AccountDeleteUseCaseImpl(private val accountRepository: AccountRepository): AccountDeleteUseCase {
+class AccountDeleteUseCaseImpl(private val accountRepository: AccountRepository) : AccountDeleteUseCase {
     @Transactional
     override fun call(input: AccountDeleteUseCaseInput): AccountDeleteUseCaseOutput {
         val deletedAccount = accountRepository.findById(input.id) ?: return AccountDeleteUseCaseOutput(null)

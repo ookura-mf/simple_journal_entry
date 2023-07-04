@@ -32,11 +32,11 @@ class AccountRepositoryImpl(private val dslContext: DSLContext) : AccountReposit
     }
 
     override fun filterByIds(ids: List<Long>): List<Account> {
-       return dslContext
-           .select()
-           .from(ACCOUNTS)
-           .where(ACCOUNTS.ID.`in`(ids))
-           .fetchInto(Account::class.java)
+        return dslContext
+            .select()
+            .from(ACCOUNTS)
+            .where(ACCOUNTS.ID.`in`(ids))
+            .fetchInto(Account::class.java)
     }
 
     override fun create(account: Account): Account {
