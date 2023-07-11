@@ -3,8 +3,8 @@ package com.okeicalm.simpleJournalEntry.handler.mutation
 import com.expediagroup.graphql.generator.scalars.ID
 import com.expediagroup.graphql.server.operations.Mutation
 import com.okeicalm.simpleJournalEntry.handler.type.AccountType
-import com.okeicalm.simpleJournalEntry.usecase.account.AccountDeleteUseCaseInput
 import com.okeicalm.simpleJournalEntry.usecase.account.AccountDeleteUseCase
+import com.okeicalm.simpleJournalEntry.usecase.account.AccountDeleteUseCaseInput
 import org.springframework.stereotype.Component
 
 data class DeleteAccountInput(val id: ID)

@@ -99,6 +99,13 @@ graphql {
     }
 }
 
+ktlint {
+    filter {
+        exclude { it.file.path.contains("generated") }
+    }
+    disabledRules.add("import-ordering")
+}
+
 tasks.withType<KotlinCompile> {
     kotlinOptions {
         freeCompilerArgs = listOf("-Xjsr305=strict")

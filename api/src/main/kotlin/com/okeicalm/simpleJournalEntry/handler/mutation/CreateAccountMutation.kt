@@ -2,8 +2,8 @@ package com.okeicalm.simpleJournalEntry.handler.mutation
 
 import com.expediagroup.graphql.server.operations.Mutation
 import com.okeicalm.simpleJournalEntry.handler.type.AccountType
-import com.okeicalm.simpleJournalEntry.usecase.account.AccountCreateUseCaseInput
 import com.okeicalm.simpleJournalEntry.usecase.account.AccountCreateUseCase
+import com.okeicalm.simpleJournalEntry.usecase.account.AccountCreateUseCaseInput
 import com.okeicalm.simpleJournalEntry.valueobject.AccountElementType
 import org.springframework.stereotype.Component
 
