@@ -4,6 +4,7 @@
 package com.okeicalm.simpleJournalEntry.infra.db.indexes
 
 
+import com.okeicalm.simpleJournalEntry.infra.db.tables.Articles
 import com.okeicalm.simpleJournalEntry.infra.db.tables.JournalEntries
 
 import org.jooq.Index
@@ -16,5 +17,6 @@ import org.jooq.impl.Internal
 // INDEX definitions
 // -------------------------------------------------------------------------
 
+val ARTICLES_ACCOUNT_ID: Index = Internal.createIndex(DSL.name("account_id"), Articles.ARTICLES, arrayOf(Articles.ARTICLES.ACCOUNT_ID), false)
 val JOURNAL_ENTRIES_FK_ACCOUNT: Index = Internal.createIndex(DSL.name("fk_account"), JournalEntries.JOURNAL_ENTRIES, arrayOf(JournalEntries.JOURNAL_ENTRIES.ACCOUNT_ID), false)
 val JOURNAL_ENTRIES_FK_JOURNAL: Index = Internal.createIndex(DSL.name("fk_journal"), JournalEntries.JOURNAL_ENTRIES, arrayOf(JournalEntries.JOURNAL_ENTRIES.JOURNAL_ID), false)
