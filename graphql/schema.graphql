@@ -34,8 +34,20 @@ type Account {
   name: String!
 }
 
+type Article {
+  content: String!
+  createdAt: Date!
+  id: ID!
+  title: String!
+  updatedAt: Date!
+}
+
 type DeleteAccountPayload {
   deletedAccount: Account
+}
+
+type DeleteArticlePayload {
+  deletedArticle: Article
 }
 
 type Journal {
@@ -53,9 +65,12 @@ type JournalEntry {
 
 type Mutation {
   createAccount(input: CreateAccountInput!): Account!
+  createArticle(input: CreateArticleInput!): Article!
   createJournal(input: CreateJournalInput!): Journal!
   deleteAccount(input: DeleteAccountInput!): DeleteAccountPayload!
+  deleteArticle(input: DeleteArticleInput!): DeleteArticlePayload!
   updateAccount(input: UpdateAccountInput!): Account!
+  updateArticle(input: UpdateArticleInput!): Article!
 }
 
 type Query {
@@ -81,6 +96,12 @@ input CreateAccountInput {
   name: String!
 }
 
+input CreateArticleInput {
+  accountID: ID!
+  content: String!
+  title: String!
+}
+
 input CreateJournalEntryInput {
   accountID: ID!
   side: Int!
@@ -96,9 +117,19 @@ input DeleteAccountInput {
   id: ID!
 }
 
+input DeleteArticleInput {
+  id: ID!
+}
+
 input UpdateAccountInput {
   code: String!
   elementType: AccountElementType!
   id: ID!
   name: String!
+}
+
+input UpdateArticleInput {
+  content: String!
+  id: ID!
+  title: String!
 }
