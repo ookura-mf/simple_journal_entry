@@ -15,10 +15,9 @@ interface ArticleCreateUseCase {
 }
 
 @Service
-class AccountCreateUseCaseImpl(private val articleRepository: ArticleRepository) : ArticleCreateUseCase {
+class ArticleCreateUseCaseImpl(private val articleRepository: ArticleRepository) : ArticleCreateUseCase {
     @Transactional
     override fun call(input: ArticleCreateUseCaseInput): ArticleCreateUseCaseOutput {
-
 
         val account = Article(
             accountId = input.accountId,

@@ -28,6 +28,7 @@ directive @specifiedBy(
   ) on SCALAR
 
 type Account {
+  articles: [Article!]!
   code: String!
   elementType: AccountElementType!
   id: ID!
@@ -75,6 +76,7 @@ type Mutation {
 
 type Query {
   allAccounts: [Account!]!
+  allArticles: [Article!]!
   allJournals: [Journal!]!
 }
 

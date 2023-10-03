@@ -1,8 +1,10 @@
 
 package com.okeicalm.simpleJournalEntry.repository
 
+import com.okeicalm.simpleJournalEntry.entity.Account
 import com.okeicalm.simpleJournalEntry.entity.Article
 import com.okeicalm.simpleJournalEntry.infra.db.tables.Articles
+import com.okeicalm.simpleJournalEntry.infra.db.tables.references.ACCOUNTS
 import com.okeicalm.simpleJournalEntry.infra.db.tables.references.ARTICLES
 import org.jooq.DSLContext
 import org.springframework.stereotype.Repository
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Repository
 interface ArticleRepository {
     fun findAll(): List<Article>
     fun findById(id: Long): Article?
+    fun filterByAccountIds(id: Long): List<Article>
     fun create(article: Article): Article
     fun update(article: Article): Article
     fun delete(id: Long): Long
@@ -28,6 +31,14 @@ class ArticleRepositoryImpl(private val dslContext: DSLContext) : ArticleReposit
         return dslContext
             .fetchOne(Articles.ARTICLES, Articles.ARTICLES.ID.eq(id))
             ?.into(Article::class.java)
+    }
+
+    override fun filterByAccountIds(id: Long): List<Article> {
+        return dslContext
+            .select()
+            .from(ARTICLES)
+            .where(ARTICLES.ACCOUNT_ID.eq(id))
+            .fetchInto(Article::class.java)
     }
 
     override fun create(article: Article): Article {
