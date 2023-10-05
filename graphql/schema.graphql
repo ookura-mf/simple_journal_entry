@@ -48,7 +48,7 @@ type DeleteAccountPayload {
 }
 
 type DeleteArticlePayload {
-  deletedArticle: Article
+  clientMutationId: String
 }
 
 type Journal {
@@ -120,7 +120,8 @@ input DeleteAccountInput {
 }
 
 input DeleteArticleInput {
-  id: ID!
+  articleId: ID!
+  clientMutationId: String
 }
 
 input UpdateAccountInput {
