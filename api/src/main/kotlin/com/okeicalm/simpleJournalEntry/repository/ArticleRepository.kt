@@ -1,10 +1,8 @@
 
 package com.okeicalm.simpleJournalEntry.repository
 
-import com.okeicalm.simpleJournalEntry.entity.Account
 import com.okeicalm.simpleJournalEntry.entity.Article
 import com.okeicalm.simpleJournalEntry.infra.db.tables.Articles
-import com.okeicalm.simpleJournalEntry.infra.db.tables.references.ACCOUNTS
 import com.okeicalm.simpleJournalEntry.infra.db.tables.references.ARTICLES
 import org.jooq.DSLContext
 import org.springframework.stereotype.Repository

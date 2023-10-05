@@ -4,7 +4,6 @@ import com.expediagroup.graphql.generator.annotations.GraphQLIgnore
 import com.expediagroup.graphql.generator.annotations.GraphQLName
 import com.expediagroup.graphql.generator.scalars.ID
 import com.okeicalm.simpleJournalEntry.entity.Article
-import com.okeicalm.simpleJournalEntry.valueobject.AccountElementType
 import java.time.LocalDate
 
 const val articleTypeGraphQLName = "Article"
