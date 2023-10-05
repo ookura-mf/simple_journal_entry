@@ -6,17 +6,17 @@ import com.okeicalm.simpleJournalEntry.valueobject.AccountElementType
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
-data class AccountUpdateUseCaseInput(val id: Long, val code: String, val name: String, val elementType: AccountElementType)
-data class AccountUpdateUseCaseOutput(val account: Account)
+data class UpdateAccountUseCaseInput(val id: Long, val code: String, val name: String, val elementType: AccountElementType)
+data class UpdateAccountUseCaseOutput(val account: Account)
 
-interface AccountUpdateUseCase {
-    fun call(input: AccountUpdateUseCaseInput): AccountUpdateUseCaseOutput
+interface UpdateAccountUseCase {
+    fun call(input: UpdateAccountUseCaseInput): UpdateAccountUseCaseOutput
 }
 
 @Service
-class AccountUpdateUseCaseImpl(private val accountRepository: AccountRepository) : AccountUpdateUseCase {
+class UpdateAccountUseCaseImpl(private val accountRepository: AccountRepository) : UpdateAccountUseCase {
     @Transactional
-    override fun call(input: AccountUpdateUseCaseInput): AccountUpdateUseCaseOutput {
+    override fun call(input: UpdateAccountUseCaseInput): UpdateAccountUseCaseOutput {
         val account = Account(
             id = input.id,
             code = input.code,
@@ -24,6 +24,6 @@ class AccountUpdateUseCaseImpl(private val accountRepository: AccountRepository)
             elementType = input.elementType
         )
 
-        return AccountUpdateUseCaseOutput(accountRepository.update(account))
+        return UpdateAccountUseCaseOutput(accountRepository.update(account))
     }
 }

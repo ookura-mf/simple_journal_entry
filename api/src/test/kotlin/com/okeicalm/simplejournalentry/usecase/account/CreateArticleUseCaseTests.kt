@@ -8,16 +8,16 @@ import io.kotest.matchers.shouldBe
 import io.mockk.every
 import io.mockk.mockk
 
-class AccountCreateUseCaseTests : DescribeSpec({
-    lateinit var usecase: AccountCreateUseCase
+class CreateArticleUseCaseTests : DescribeSpec({
+    lateinit var usecase: CreateAccountUseCase
     val repository = mockk<AccountRepository>()
 
     beforeEach {
-        usecase = AccountCreateUseCaseImpl(repository)
+        usecase = CreateAccountUseCaseImpl(repository)
     }
 
     describe("call") {
-        val input = AccountCreateUseCaseInput("code", "name", AccountElementType.ASSETS)
+        val input = CreateAccountUseCaseInput("code", "name", AccountElementType.ASSETS)
         val account = Account(code = "code", name = "name", elementType = AccountElementType.ASSETS)
 
         every { repository.create(account) } returns account.copy(id = 1)

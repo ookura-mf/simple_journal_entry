@@ -6,22 +6,22 @@ import com.okeicalm.simpleJournalEntry.valueobject.AccountElementType
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
-data class AccountCreateUseCaseInput(val code: String, val name: String, val elementType: AccountElementType)
-data class AccountCreateUseCaseOutput(val account: Account)
+data class CreateAccountUseCaseInput(val code: String, val name: String, val elementType: AccountElementType)
+data class CreateAccountUseCaseOutput(val account: Account)
 
-interface AccountCreateUseCase {
-    fun call(input: AccountCreateUseCaseInput): AccountCreateUseCaseOutput
+interface CreateAccountUseCase {
+    fun call(input: CreateAccountUseCaseInput): CreateAccountUseCaseOutput
 }
 
 @Service
-class AccountCreateUseCaseImpl(private val accountRepository: AccountRepository) : AccountCreateUseCase {
+class CreateAccountUseCaseImpl(private val accountRepository: AccountRepository) : CreateAccountUseCase {
     @Transactional
-    override fun call(input: AccountCreateUseCaseInput): AccountCreateUseCaseOutput {
+    override fun call(input: CreateAccountUseCaseInput): CreateAccountUseCaseOutput {
         val account = Account(
             code = input.code,
             name = input.name,
             elementType = input.elementType
         )
-        return AccountCreateUseCaseOutput(accountRepository.create(account))
+        return CreateAccountUseCaseOutput(accountRepository.create(account))
     }
 }

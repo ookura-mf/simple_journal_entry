@@ -7,17 +7,17 @@ import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.time.LocalDate
 
-data class ArticleCreateUseCaseInput(val accountId: Long, val title: String, val content: String)
-data class ArticleCreateUseCaseOutput(val article: Article)
+data class CreateArticleUseCaseInput(val accountId: Long, val title: String, val content: String)
+data class CreateArticleUseCaseOutput(val article: Article)
 
-interface ArticleCreateUseCase {
-    fun call(input: ArticleCreateUseCaseInput): ArticleCreateUseCaseOutput
+interface CreateArticleUseCase {
+    fun call(input: CreateArticleUseCaseInput): CreateArticleUseCaseOutput
 }
 
 @Service
-class ArticleCreateUseCaseImpl(private val articleRepository: ArticleRepository) : ArticleCreateUseCase {
+class CreateArticleUseCaseImpl(private val articleRepository: ArticleRepository) : CreateArticleUseCase {
     @Transactional
-    override fun call(input: ArticleCreateUseCaseInput): ArticleCreateUseCaseOutput {
+    override fun call(input: CreateArticleUseCaseInput): CreateArticleUseCaseOutput {
 
         val account = Article(
             accountId = input.accountId,
@@ -27,6 +27,6 @@ class ArticleCreateUseCaseImpl(private val articleRepository: ArticleRepository)
             updatedAt = LocalDate.now(),
         )
 
-        return ArticleCreateUseCaseOutput(articleRepository.create(account))
+        return CreateArticleUseCaseOutput(articleRepository.create(account))
     }
 }

@@ -2,8 +2,8 @@ package com.okeicalm.simpleJournalEntry.handler.mutation
 
 import com.expediagroup.graphql.generator.scalars.ID
 import com.expediagroup.graphql.server.operations.Mutation
-import com.okeicalm.simpleJournalEntry.usecase.article.ArticleDeleteUseCase
-import com.okeicalm.simpleJournalEntry.usecase.article.ArticleDeleteUseCaseInput
+import com.okeicalm.simpleJournalEntry.usecase.article.DeleteArticleUseCase
+import com.okeicalm.simpleJournalEntry.usecase.article.DeleteArticleUseCaseInput
 import org.springframework.stereotype.Component
 
 data class DeleteArticleInput(
@@ -16,9 +16,9 @@ data class DeleteArticlePayload(
 )
 
 @Component
-class DeleteArticleMutation(private val articleDeletionUseCase: ArticleDeleteUseCase) : Mutation {
+class DeleteArticleMutation(private val deleteArticleUseCase: DeleteArticleUseCase) : Mutation {
     fun deleteArticle(input: DeleteArticleInput): DeleteArticlePayload {
-        val output = articleDeletionUseCase.call(ArticleDeleteUseCaseInput(id = input.articleId.toString().toLong()))
+        val output = deleteArticleUseCase.call(DeleteArticleUseCaseInput(id = input.articleId.toString().toLong()))
 
         return DeleteArticlePayload(clientMutationId = null)
     }

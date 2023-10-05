@@ -6,17 +6,17 @@ import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.time.LocalDate
 
-data class ArticleUpdateUseCaseInput(val id: Long, val title: String, val content: String)
-data class ArticleUpdateUseCaseOutput(val account: Article)
+data class UpdateArticleUseCaseInput(val id: Long, val title: String, val content: String)
+data class UpdateArticleUseCaseOutput(val account: Article)
 
-interface ArticleUpdateUseCase {
-    fun call(input: ArticleUpdateUseCaseInput): ArticleUpdateUseCaseOutput
+interface UpdateArticleUseCase {
+    fun call(input: UpdateArticleUseCaseInput): UpdateArticleUseCaseOutput
 }
 
 @Service
-class ArticleUpdateUseCaseImpl(private val accountRepository: ArticleRepository) : ArticleUpdateUseCase {
+class UpdateArticleUseCaseImpl(private val accountRepository: ArticleRepository) : UpdateArticleUseCase {
     @Transactional
-    override fun call(input: ArticleUpdateUseCaseInput): ArticleUpdateUseCaseOutput {
+    override fun call(input: UpdateArticleUseCaseInput): UpdateArticleUseCaseOutput {
         val account = Article(
             id = input.id,
             title = input.title,
@@ -25,6 +25,6 @@ class ArticleUpdateUseCaseImpl(private val accountRepository: ArticleRepository)
             createdAt = LocalDate.now(),
         )
 
-        return ArticleUpdateUseCaseOutput(accountRepository.update(account))
+        return UpdateArticleUseCaseOutput(accountRepository.update(account))
     }
 }
