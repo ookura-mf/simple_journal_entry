@@ -7,6 +7,7 @@ package com.okeicalm.simpleJournalEntry.infra.db.tables.references
 import com.okeicalm.simpleJournalEntry.infra.db.tables.Accounts
 import com.okeicalm.simpleJournalEntry.infra.db.tables.JournalEntries
 import com.okeicalm.simpleJournalEntry.infra.db.tables.Journals
+import com.okeicalm.simpleJournalEntry.infra.db.tables.Users
 
 
 
@@ -24,3 +25,8 @@ val JOURNAL_ENTRIES: JournalEntries = JournalEntries.JOURNAL_ENTRIES
  * The table <code>simple_journal_entry_db.journals</code>.
  */
 val JOURNALS: Journals = Journals.JOURNALS
+
+/**
+ * The table <code>simple_journal_entry_db.users</code>.
+ */
+val USERS: Users = Users.USERS

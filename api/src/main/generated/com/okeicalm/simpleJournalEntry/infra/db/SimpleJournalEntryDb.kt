@@ -7,6 +7,7 @@ package com.okeicalm.simpleJournalEntry.infra.db
 import com.okeicalm.simpleJournalEntry.infra.db.tables.Accounts
 import com.okeicalm.simpleJournalEntry.infra.db.tables.JournalEntries
 import com.okeicalm.simpleJournalEntry.infra.db.tables.Journals
+import com.okeicalm.simpleJournalEntry.infra.db.tables.Users
 
 import kotlin.collections.List
 
@@ -43,11 +44,17 @@ open class SimpleJournalEntryDb : SchemaImpl("simple_journal_entry_db", DefaultC
      */
     val JOURNALS: Journals get() = Journals.JOURNALS
 
+    /**
+     * The table <code>simple_journal_entry_db.users</code>.
+     */
+    val USERS: Users get() = Users.USERS
+
     override fun getCatalog(): Catalog = DefaultCatalog.DEFAULT_CATALOG
 
     override fun getTables(): List<Table<*>> = listOf(
         Accounts.ACCOUNTS,
         JournalEntries.JOURNAL_ENTRIES,
-        Journals.JOURNALS
+        Journals.JOURNALS,
+        Users.USERS
     )
 }
