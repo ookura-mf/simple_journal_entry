@@ -7,9 +7,11 @@ package com.okeicalm.simpleJournalEntry.infra.db.keys
 import com.okeicalm.simpleJournalEntry.infra.db.tables.Accounts
 import com.okeicalm.simpleJournalEntry.infra.db.tables.JournalEntries
 import com.okeicalm.simpleJournalEntry.infra.db.tables.Journals
+import com.okeicalm.simpleJournalEntry.infra.db.tables.Users
 import com.okeicalm.simpleJournalEntry.infra.db.tables.records.AccountsRecord
 import com.okeicalm.simpleJournalEntry.infra.db.tables.records.JournalEntriesRecord
 import com.okeicalm.simpleJournalEntry.infra.db.tables.records.JournalsRecord
+import com.okeicalm.simpleJournalEntry.infra.db.tables.records.UsersRecord
 
 import org.jooq.ForeignKey
 import org.jooq.UniqueKey
@@ -26,6 +28,7 @@ val KEY_ACCOUNTS_CODE: UniqueKey<AccountsRecord> = Internal.createUniqueKey(Acco
 val KEY_ACCOUNTS_PRIMARY: UniqueKey<AccountsRecord> = Internal.createUniqueKey(Accounts.ACCOUNTS, DSL.name("KEY_accounts_PRIMARY"), arrayOf(Accounts.ACCOUNTS.ID), true)
 val KEY_JOURNAL_ENTRIES_PRIMARY: UniqueKey<JournalEntriesRecord> = Internal.createUniqueKey(JournalEntries.JOURNAL_ENTRIES, DSL.name("KEY_journal_entries_PRIMARY"), arrayOf(JournalEntries.JOURNAL_ENTRIES.ID), true)
 val KEY_JOURNALS_PRIMARY: UniqueKey<JournalsRecord> = Internal.createUniqueKey(Journals.JOURNALS, DSL.name("KEY_journals_PRIMARY"), arrayOf(Journals.JOURNALS.ID), true)
+val KEY_USERS_PRIMARY: UniqueKey<UsersRecord> = Internal.createUniqueKey(Users.USERS, DSL.name("KEY_users_PRIMARY"), arrayOf(Users.USERS.ID), true)
 
 // -------------------------------------------------------------------------
 // FOREIGN KEY definitions
