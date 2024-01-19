@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository
 
 interface UserRepository {
     fun findAll(): List<User>
+    fun findById(id: Long): User?
     fun create(user: User): User
     fun update(user: User): User
     fun delete(id: Long): Long
@@ -20,6 +21,12 @@ class UserRepositoryImpl(private  val dslContext: DSLContext) : UserRepository {
             .from(USERS)
             .fetch()
             .into(User::class.java)
+    }
+
+    override fun findById(id: Long): User? {
+        return dslContext
+            .fetchOne(USERS, USERS.ID.eq(id))
+            ?.into(User::class.java)
     }
 
     override fun create(user: User): User {
