@@ -5,20 +5,20 @@ import com.okeicalm.simpleJournalEntry.repository.UserRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
-data class userUpdateUseCaseInput(val name: String)
-data class userUpdateUseCaseOutput(val user: User)
+data class UserUpdateUseCaseInput(val name: String)
+data class UserUpdateUseCaseOutput(val user: User)
 
 interface UserUpdateUseCase {
-    fun call(input: userUpdateUseCaseInput): userUpdateUseCaseOutput
+    fun call(input: UserUpdateUseCaseInput): UserUpdateUseCaseOutput
 }
 
 @Service
 class UserUpdateUseCaseImpl(private val userRepository: UserRepository): UserUpdateUseCase {
     @Transactional
-    override fun call(input: userUpdateUseCaseInput): userUpdateUseCaseOutput {
+    override fun call(input: UserUpdateUseCaseInput): UserUpdateUseCaseOutput {
         val user = User(
             name = input.name
         )
-        return userUpdateUseCaseOutput(userRepository.update(user))
+        return UserUpdateUseCaseOutput(userRepository.update(user))
     }
 }
